@@ -52,16 +52,21 @@ onMounted(async () => {
     const res = await getPassengers()
     // Adapt data if needed
     passengers.value = res.data.map((p: any) => ({
-  id: p.id,
-  name: p.name,
-  age: p.age,
-  airlineId: p.airlineId,
-  airlineName: p.airlineName,
-  airlineCountry: p.airlineCountry,
-  trips: p.trips,
-  description: p.description,
-}))
+      id: p.id,
+      name: p.name,
+      age: p.age,
+      airlineId: p.airlineId,
+      airlineName: p.airlineName,
+      airlineCountry: p.airlineCountry,
+      trips: p.trips,
+      description: p.description,
+    }))
   } catch (e: any) {
+    // If network error, redirect to ResourceNotFoundView
+    if (!window.navigator.onLine || (e && e.message && e.message.toLowerCase().includes('network'))) {
+      router.replace({ name: 'resource-not-found' })
+      return
+    }
     error.value = e.message || 'Unknown error'
   } finally {
     loading.value = false

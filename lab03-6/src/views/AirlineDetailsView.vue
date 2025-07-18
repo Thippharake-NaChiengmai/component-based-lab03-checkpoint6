@@ -23,8 +23,11 @@ onMounted(async () => {
   } catch (e: any) {
     // Redirect to NotFound if fetch fails
     router.replace({ name: 'not-found' })
-    // Redirect to ResourceNotFound if fetch fails
-    router.replace({ name: 'resource-not-found' })
+    // If network error, redirect to ResourceNotFoundView
+    if (!window.navigator.onLine || (e && e.message && e.message.toLowerCase().includes('network'))) {
+      router.replace({ name: 'resource-not-found' })
+      return
+    }
     return
   } finally {
     loading.value = false

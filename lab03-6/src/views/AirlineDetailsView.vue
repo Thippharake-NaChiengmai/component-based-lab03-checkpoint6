@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { getAirlineById } from '@/../service/PassengerService'
 
 interface AirlineDetails {
@@ -13,6 +13,7 @@ const route = useRoute()
 const airline = ref<AirlineDetails | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
+const router = useRouter()
 
 onMounted(async () => {
   loading.value = true
@@ -20,7 +21,9 @@ onMounted(async () => {
     const res = await getAirlineById(String(route.params.airlineId))
     airline.value = res.data
   } catch (e: any) {
-    error.value = e.message || 'Unknown error'
+    // Redirect to NotFound if fetch fails
+    router.replace({ name: 'not-found' })
+    return
   } finally {
     loading.value = false
   }

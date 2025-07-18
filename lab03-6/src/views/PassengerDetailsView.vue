@@ -23,7 +23,9 @@ onMounted(async () => {
     const res = await getPassengerDetailsById(String(route.params.id))
     passenger.value = res.data
   } catch (e: any) {
-    error.value = e.message || 'Unknown error'
+    // Redirect to NotFound if fetch fails
+    router.replace({ name: 'not-found' })
+    return
   } finally {
     loading.value = false
   }

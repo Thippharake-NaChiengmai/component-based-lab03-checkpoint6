@@ -8,10 +8,10 @@ interface Passenger {
   name: string;
   age: number;
   description: string;
-  trips?: number;
-  airlineId?: number;
-  airlineName?: string;
-  airlineCountry?: string;
+  trips: number;
+  airlineId: number;
+  airlineName: string;
+  airlineCountry: string;
 }
 
 const passengers = ref<Passenger[]>([])

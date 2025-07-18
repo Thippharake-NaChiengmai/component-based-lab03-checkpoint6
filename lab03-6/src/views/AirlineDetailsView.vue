@@ -3,14 +3,14 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getAirlineById } from '@/../service/PassengerService'
 
-interface Airline {
+interface AirlineDetails {
   id: number;
   name: string;
   country: string;
 }
 
 const route = useRoute()
-const airline = ref<Airline | null>(null)
+const airline = ref<AirlineDetails | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
 

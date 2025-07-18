@@ -13,7 +13,7 @@ export function getPassengers() {
   return apiClient.get('/');
 }
 
-export function getPassengerById(id) {
+export function getPassengerById(id: number | string) {
   return apiClient.get(`/${id}`);
 }
 export function getPassengerDetailsById(id: number | string) {

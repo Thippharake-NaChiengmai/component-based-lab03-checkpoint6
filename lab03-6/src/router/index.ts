@@ -30,6 +30,11 @@ const router = createRouter({
       component: AirlineDetailsView,
     },
     {
+      path: '/resource-not-found',
+      name: 'resource-not-found',
+      component: () => import('@/views/ResourceNotFoundView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('@/views/NotFoundView.vue'),

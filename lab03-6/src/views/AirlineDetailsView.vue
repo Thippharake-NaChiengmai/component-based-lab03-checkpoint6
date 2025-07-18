@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import axios from 'axios'
+import { getAirlineById } from '@/../service/PassengerService'
 
 interface Airline {
   id: number;
@@ -17,7 +17,7 @@ const error = ref<string | null>(null)
 onMounted(async () => {
   loading.value = true
   try {
-    const res = await axios.get(`https://api.instantwebtools.net/v1/airlines/${route.params.airlineId}`)
+    const res = await getAirlineById(String(route.params.airlineId))
     airline.value = res.data
   } catch (e: any) {
     error.value = e.message || 'Unknown error'

@@ -23,13 +23,11 @@ const router = createRouter({
       path: '/passenger/:id',
       name: 'passenger-details',
       component: PassengerDetailsView,
-      children: [
-        {
-          path: 'airline/:airlineId',
-          name: 'airline-details',
-          component: AirlineDetailsView,
-        },
-      ],
+    },
+    {
+      path: '/airline/:airlineId',
+      name: 'airline-details',
+      component: AirlineDetailsView,
     },
   ],
 })

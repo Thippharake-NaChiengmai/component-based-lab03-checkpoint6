@@ -42,7 +42,7 @@ function openPassengerDetails(id: number) {
 
 function goToAirlineDetails(passenger: Passenger) {
   if (passenger.airlineId) {
-    router.push({ name: 'airline-details', params: { id: passenger.id, airlineId: passenger.airlineId } })
+    router.push({ name: 'airline-details', params: { airlineId: passenger.airlineId } })
   }
 }
 
@@ -52,14 +52,15 @@ onMounted(async () => {
     const res = await getPassengers()
     // Adapt data if needed
     passengers.value = res.data.map((p: any) => ({
-      id: p.id,
-      name: p.name,
-      age: p.age,
-      airlineId: p.airline?.id,
-      airlineName: p.airline?.name,
-      airlineCountry: p.airline?.country,
-      trips: p.trips,
-    }))
+  id: p.id,
+  name: p.name,
+  age: p.age,
+  airlineId: p.airlineId,
+  airlineName: p.airlineName,
+  airlineCountry: p.airlineCountry,
+  trips: p.trips,
+  description: p.description,
+}))
   } catch (e: any) {
     error.value = e.message || 'Unknown error'
   } finally {

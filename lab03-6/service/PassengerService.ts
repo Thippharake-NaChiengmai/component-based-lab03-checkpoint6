@@ -19,7 +19,16 @@ export function getPassengerById(id: number | string) {
 export function getPassengerDetailsById(id: number | string) {
     return apiClient.get(`/${id}`);
   }
-  
-  export function getAirlineById(id: number | string) {
-    return apiClient.get(`/airlines/${id}`);
+
+export async function getAirlineById(airlineId: number | string) {
+  const allPassengers = await getPassengers();
+  const match = allPassengers.data.find((p: any) => p.airlineId == airlineId);
+  if (!match) throw new Error('Airline not found');
+  return {
+    data: {
+      id: match.airlineId,
+      name: match.airlineName,
+      country: match.airlineCountry
+    }
   }
+}

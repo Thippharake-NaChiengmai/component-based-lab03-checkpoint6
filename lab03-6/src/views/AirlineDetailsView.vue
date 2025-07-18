@@ -28,7 +28,7 @@ onMounted(async () => {
 </script>
 <template>
   <div>
-    <h2>Airline Details</h2>
+    <h1>Airline Details</h1>
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">Error: {{ error }}</div>
     <div v-else-if="airline">

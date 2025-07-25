@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import PassengerDetailsView from '@/views/PassengerDetailsView.vue'
 import AirlineDetailsView from '@/views/AirlineDetailsView.vue'
+import EditPassengerView from '@/views/EditPassengerView.vue'
 
 type CustomRouteMeta = {
   title?: string;
@@ -43,6 +44,14 @@ const router = createRouter({
       component: AirlineDetailsView,
       meta: {
         title: 'Airline Details - Flight Booking',
+      },
+    },
+    {
+      path: '/passenger/:id/edit',
+      name: 'edit-passenger',
+      component: EditPassengerView,
+      meta: {
+        title: 'Edit Passenger - Flight Booking',
       },
     },
     {

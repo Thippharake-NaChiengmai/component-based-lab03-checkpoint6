@@ -50,7 +50,10 @@ function goToAirline(airlineId: number) {
       <p><strong>Age:</strong> {{ passenger?.age }}</p>
       <p><strong>Trips:</strong> {{ passenger?.trips }}</p>
       <p><strong>Description:</strong> {{ passenger?.description }}</p>
+      <button @click="router.push({ name: 'edit-passenger', params: { id: passenger.id } })">
+        Edit
+      </button>
       <router-view />
     </div>
   </div>
-</template> 
+</template>
